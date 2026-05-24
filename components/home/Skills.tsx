@@ -1,76 +1,81 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import { HOME_SKILL_GROUPS } from "@/data/home";
-
-function SkillBar({ pct, inView }: { pct: number; inView: boolean }) {
-  return (
-    <div className="w-full bg-white/5 rounded-full h-px mt-1.5">
-      <motion.div
-        className="bg-white/40 rounded-full h-px"
-        initial={{ width: 0 }}
-        animate={inView ? { width: `${pct}%` } : { width: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      />
-    </div>
-  );
-}
-
-function GroupCard({ group }: { group: (typeof HOME_SKILL_GROUPS)[0] }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.3 });
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 20 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className="liquid-glass rounded-2xl p-6"
-    >
-      <h3 className="font-heading italic text-white text-lg mb-5">
-        {group.group}
-      </h3>
-      <div className="flex flex-col gap-4">
-        {group.skills.map((skill) => (
-          <div key={skill.name}>
-            <div className="flex items-center justify-between">
-              <span className="font-body text-white/60 text-sm">
-                {skill.name}
-              </span>
-              <span className="font-body text-white/30 text-xs">
-                {skill.pct}
-              </span>
-            </div>
-            <SkillBar pct={skill.pct} inView={inView} />
-          </div>
-        ))}
-      </div>
-    </motion.div>
-  );
-}
 
 export default function Skills() {
   return (
-    <section id="skills" className="bg-black py-32 px-6">
+    <section id="skills" className="py-28 px-6" style={{ background: "var(--bg-alt)" }}>
       <div className="max-w-6xl mx-auto">
+
         {/* Header */}
-        <div className="flex flex-col items-center gap-3 mb-14 text-center">
-          <span className="liquid-glass rounded-full px-3 py-1 text-xs font-body text-white/50">
-            Capabilities
-          </span>
-          <h2 className="font-heading italic text-white text-4xl md:text-5xl">
+        <div className="flex flex-col gap-3 mb-16">
+          <span className="label">Capabilities</span>
+          <h2
+            className="font-heading italic text-white"
+            style={{ fontSize: "clamp(2.5rem, 5vw, 4.5rem)" }}
+          >
             What I work with.
           </h2>
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-          {HOME_SKILL_GROUPS.map((group) => (
-            <GroupCard key={group.group} group={group} />
+        {/* 4-column grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+          {HOME_SKILL_GROUPS.map((group, gi) => (
+            <motion.div
+              key={group.group}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.65, delay: gi * 0.08, ease: [0.22,1,0.36,1] }}
+              className="flex flex-col gap-5"
+            >
+              {/* Category */}
+              <div className="pb-3" style={{ borderBottom: "1px solid var(--border-dim)" }}>
+                <h3 className="font-heading italic text-lg" style={{ color: "var(--dim-4)" }}>
+                  {group.group}
+                </h3>
+              </div>
+
+              {/* Skills — opacity + size encode proficiency */}
+              <div className="flex flex-col gap-3">
+                {group.skills
+                  .sort((a, b) => b.pct - a.pct)
+                  .map((skill) => {
+                    /* Map pct → opacity within our scale */
+                    const opacity = skill.pct >= 80 ? 0.74
+                                  : skill.pct >= 70 ? 0.52
+                                  : skill.pct >= 60 ? 0.35
+                                  : 0.22;
+                    const size    = skill.pct >= 80 ? "0.94rem"
+                                  : skill.pct >= 70 ? "0.88rem"
+                                  : "0.82rem";
+                    const weight  = skill.pct >= 80 ? "400" : "300";
+                    return (
+                      <div
+                        key={skill.name}
+                        className="flex items-baseline justify-between group"
+                      >
+                        <span
+                          className="font-body transition-colors duration-200 group-hover:text-white"
+                          style={{ color: `rgba(255,255,255,${opacity})`, fontSize: size, fontWeight: weight }}
+                        >
+                          {skill.name}
+                        </span>
+                        <span
+                          className="label tabular-nums"
+                          style={{ color: `rgba(255,255,255,${opacity * 0.5})` }}
+                        >
+                          {skill.pct}
+                        </span>
+                      </div>
+                    );
+                  })}
+              </div>
+            </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   );

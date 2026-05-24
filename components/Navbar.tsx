@@ -3,149 +3,157 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { ArrowUpRight, X } from "lucide-react";
 
 const NAV_LINKS = [
-  { label: "Home", href: "/" },
-  { label: "Projects", href: "#projects" },
-  { label: "Skills", href: "#skills" },
-  { label: "Experience", href: "#experience" },
-  { label: "Contact", href: "#contact" },
+  { label: "Projects",   href: "#projects"  },
+  { label: "Skills",     href: "#skills"    },
+  { label: "About",      href: "#about"     },
+  { label: "Contact",    href: "#contact"   },
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled]     = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [active, setActive] = useState("Home");
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 80);
+    const onScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const scrollTo = (href: string) => {
     setMobileOpen(false);
-    if (href === "/") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      return;
-    }
+    if (href === "/") { window.scrollTo({ top: 0, behavior: "smooth" }); return; }
     const el = document.querySelector(href);
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <>
-      {/* Fixed outer wrapper */}
-      <div
-        className={`fixed top-4 inset-x-0 z-50 px-4 transition-all duration-300 ${
-          scrolled ? "backdrop-blur-md" : ""
-        }`}
+      {/* ── Desktop nav ───────────────────────────────────────────────── */}
+      <header
+        className="fixed top-0 inset-x-0 z-50 transition-all duration-500"
+        style={{
+          borderBottom: scrolled ? "1px solid rgba(255,255,255,0.06)" : "1px solid transparent",
+          background: scrolled ? "rgba(0,0,0,0.88)" : "transparent",
+          backdropFilter: scrolled ? "blur(18px)" : "none",
+          WebkitBackdropFilter: scrolled ? "blur(18px)" : "none",
+        }}
       >
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          {/* Left — profile avatar */}
-          <Link href="/" className="flex-shrink-0">
-            <div className="w-10 h-10 rounded-full overflow-hidden liquid-glass flex items-center justify-center">
-              <span className="font-heading italic text-white text-lg select-none">
-                A
-              </span>
-            </div>
-          </Link>
+        <div className="max-w-6xl mx-auto px-6 md:px-10 h-14 flex items-center justify-between">
 
-          {/* Center — pill nav */}
-          <nav className="hidden md:block liquid-glass rounded-full px-2 py-1.5">
-            <ul className="flex items-center gap-1">
-              {NAV_LINKS.map((link) => (
-                <li key={link.label}>
-                  <button
-                    onClick={() => {
-                      setActive(link.label);
-                      scrollTo(link.href);
-                    }}
-                    className={`px-4 py-1.5 rounded-full text-sm font-body font-medium transition-all duration-200 ${
-                      active === link.label
-                        ? "text-white bg-white/10"
-                        : "text-white/70 hover:text-white"
-                    }`}
-                  >
-                    {link.label}
-                  </button>
-                </li>
-              ))}
-            </ul>
+          {/* Left — wordmark */}
+          <button
+            onClick={() => scrollTo("/")}
+            className="font-heading italic text-white/60 hover:text-white/90 transition-colors duration-200"
+            style={{ fontSize: "0.92rem", letterSpacing: "-0.01em" }}
+          >
+            Ayush Roy.
+          </button>
+
+          {/* Center — nav links (desktop) */}
+          <nav className="hidden md:flex items-center gap-7">
+            {NAV_LINKS.map((link) => (
+              <button
+                key={link.label}
+                onClick={() => scrollTo(link.href)}
+                className="label hover:text-white/55 transition-colors duration-200"
+              >
+                {link.label}
+              </button>
+            ))}
           </nav>
 
-          {/* Right — CTA buttons */}
-          <div className="flex items-center gap-2">
-            <Link
-              href="/resume"
-              className="hidden md:inline-flex items-center px-4 py-1.5 rounded-full text-sm font-body font-medium text-white/70 hover:text-white liquid-glass transition-colors duration-200"
-            >
-              Resume
-            </Link>
-            <button
-              onClick={() => scrollTo("#contact")}
-              className="inline-flex items-center gap-1 px-4 py-1.5 rounded-full text-sm font-body font-medium bg-white text-black hover:bg-white/90 transition-colors duration-200"
-            >
-              Contact
-              <ArrowUpRight size={13} />
-            </button>
+          {/* Right */}
+          <div className="flex items-center gap-5">
+            {/* Availability indicator */}
+            <div className="hidden md:flex items-center gap-1.5">
+              <span
+                className="pulse-dot inline-block w-1.5 h-1.5 rounded-full bg-emerald-400"
+              />
+              <span className="label" style={{ color: "rgba(255,255,255,0.22)" }}>
+                Available
+              </span>
+            </div>
 
-            {/* Mobile hamburger */}
+            {/* Mobile toggle */}
             <button
-              className="md:hidden ml-1 p-2 rounded-full liquid-glass text-white/70 hover:text-white transition-colors"
-              onClick={() => setMobileOpen(!mobileOpen)}
-              aria-label="Toggle menu"
+              className="md:hidden label text-white/40 hover:text-white/70 transition-colors"
+              onClick={() => setMobileOpen(true)}
+              aria-label="Open menu"
             >
-              {mobileOpen ? <X size={18} /> : <Menu size={18} />}
+              Menu
             </button>
           </div>
         </div>
-      </div>
+      </header>
 
-      {/* Mobile fullscreen overlay */}
+      {/* ── Mobile overlay ────────────────────────────────────────────── */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 liquid-glass-strong flex flex-col items-center justify-center gap-6"
+            transition={{ duration: 0.18 }}
+            className="fixed inset-0 z-[60] bg-black flex flex-col"
+            style={{ borderRight: "none" }}
           >
-            {NAV_LINKS.map((link, i) => (
-              <motion.button
-                key={link.label}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.07 }}
-                onClick={() => {
-                  setActive(link.label);
-                  scrollTo(link.href);
-                }}
-                className="font-heading italic text-white text-4xl hover:opacity-60 transition-opacity"
+            {/* Close */}
+            <div className="flex justify-between items-center px-6 h-14">
+              <span className="font-heading italic text-white/50" style={{ fontSize: "0.92rem" }}>
+                Ayush Roy.
+              </span>
+              <button
+                onClick={() => setMobileOpen(false)}
+                className="text-white/40 hover:text-white/80 transition-colors"
+                aria-label="Close menu"
               >
-                {link.label}
-              </motion.button>
-            ))}
+                <X size={18} />
+              </button>
+            </div>
+
+            {/* Links */}
+            <div className="flex flex-col justify-center flex-1 px-8 gap-6 pb-16">
+              {NAV_LINKS.map((link, i) => (
+                <motion.div
+                  key={link.label}
+                  initial={{ opacity: 0, x: -16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.06, duration: 0.4, ease: [0.22,1,0.36,1] }}
+                  style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}
+                  className="pb-5"
+                >
+                  <button
+                    onClick={() => scrollTo(link.href)}
+                    className="font-heading italic text-white/75 hover:text-white transition-colors"
+                    style={{ fontSize: "clamp(2rem, 8vw, 3rem)" }}
+                  >
+                    {link.label}
+                  </button>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Footer row */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="flex items-center gap-3 mt-4"
+              transition={{ delay: 0.32, duration: 0.4 }}
+              className="px-8 pb-10 flex items-center justify-between"
             >
-              <Link
-                href="/resume"
-                onClick={() => setMobileOpen(false)}
-                className="px-5 py-2 rounded-full liquid-glass text-sm font-body text-white/70"
-              >
-                Resume
-              </Link>
+              <div className="flex items-center gap-2">
+                <span className="pulse-dot inline-block w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                <span className="label" style={{ color: "rgba(255,255,255,0.22)" }}>
+                  Available for internships
+                </span>
+              </div>
               <button
                 onClick={() => scrollTo("#contact")}
-                className="flex items-center gap-1 px-5 py-2 rounded-full bg-white text-black text-sm font-body font-medium"
+                className="label flex items-center gap-1 text-white/35 hover:text-white/65 transition-colors"
               >
-                Contact <ArrowUpRight size={13} />
+                Contact <ArrowUpRight size={10} />
               </button>
             </motion.div>
           </motion.div>

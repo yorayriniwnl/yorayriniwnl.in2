@@ -3,150 +3,143 @@
 import { motion } from "framer-motion";
 import { SITE_PROFILE } from "@/data/personal";
 
-const PHILOSOPHY = [
-  {
-    icon: "⚙️",
-    title: "Build to Ship",
-    desc: "Production-ready from day one.",
-  },
-  {
-    icon: "🫀",
-    title: "Make it Human",
-    desc: "Interfaces should feel alive.",
-  },
-  {
-    icon: "🗂️",
-    title: "Own the Stack",
-    desc: "Depth over breadth, always.",
-  },
+const BELIEFS = [
+  { n: "01", title: "Build to ship.",      body: "Production-ready from day one. No demos that never deploy." },
+  { n: "02", title: "Make it human.",      body: "Interfaces should feel alive — not just functional."       },
+  { n: "03", title: "Own the stack.",      body: "Depth over breadth. Understand everything you build."      },
 ];
 
-const STATS = [
-  { value: "9", label: "Projects built" },
-  { value: "3", label: "Hackathons" },
-  { value: "2027", label: "Graduation" },
-  { value: "9", label: "Public repos" },
+const METRICS = [
+  { val: "9",    label: "Projects shipped"    },
+  { val: "3",    label: "Hackathons competed" },
+  { val: "2027", label: "Graduation year"     },
+  { val: "9+",   label: "Public repos"        },
 ];
 
-const FUN_FACTS = [
-  {
-    dot: "bg-indigo-400",
-    tag: "KIIT",
-    text: "CS & Communication Engineering student at KIIT University, class of 2027",
-  },
-  {
-    dot: "bg-pink-400",
-    tag: "HACK",
-    text: "Participated in 3 hackathons",
-  },
-  {
-    dot: "bg-amber-400",
-    tag: "SUN",
-    text: "Built Yor Zenith as a full-stack solar planning startup project",
-  },
-  {
-    dot: "bg-green-400",
-    tag: "MUS",
-    text: "Plays piano and guitar. Chess player and Rubik's Cube solver",
-  },
-  {
-    dot: "bg-sky-400",
-    tag: "BSG",
-    text: "Completed Pratham, Dwitiya, and Tritiya Sopan in Bharat Scouts & Guides",
-  },
-  {
-    dot: "bg-orange-400",
-    tag: "IN",
-    text: "Based in India — open to remote internships and collaboration",
-  },
+const FACTS = [
+  { tag: "KIIT",  text: "CS & Communication Engineering · class of 2027"      },
+  { tag: "HACK",  text: "3 hackathons — competed, shipped, learned"            },
+  { tag: "SOLAR", text: "Yor Zenith — full-stack solar planning platform"      },
+  { tag: "MUS",   text: "Piano · Guitar · Chess · Rubik's Cube"               },
+  { tag: "BSG",   text: "Bharat Scouts & Guides — Pratham through Tritiya Sopan"},
+  { tag: "LOC",   text: "Based in India · open to remote collaboration"        },
 ];
+
+const iFade = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (d: number) => ({
+    opacity: 1, y: 0,
+    transition: { duration: 0.8, delay: d, ease: [0.22,1,0.36,1] },
+  }),
+};
 
 export default function About() {
   return (
-    <section id="about" className="bg-black py-32 px-6">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-        {/* Left column */}
+    <section id="about" className="py-28 px-6" style={{ background: "var(--bg-alt)" }}>
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
+
+        {/* ── Left ──────────────────────────────────────────────────── */}
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="flex flex-col gap-6"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.12 }}
+          className="flex flex-col gap-10"
         >
-          <span className="liquid-glass self-start rounded-full px-3 py-1 text-xs font-body text-white/50">
-            About Me
-          </span>
+          <motion.span custom={0} variants={iFade} className="label">About</motion.span>
 
-          <h2 className="font-heading italic text-white text-4xl md:text-5xl">
-            Ayush Roy.<br />Developer. Builder.
-          </h2>
+          <motion.h2
+            custom={0.06}
+            variants={iFade}
+            className="font-heading italic text-white"
+            style={{ fontSize: "clamp(2.6rem, 5vw, 4rem)", lineHeight: 0.92 }}
+          >
+            Ayush Roy.<br />Developer.<br />Builder.
+          </motion.h2>
 
-          <p className="font-body font-light text-white/50 text-sm leading-relaxed max-w-md">
+          <motion.p
+            custom={0.14}
+            variants={iFade}
+            className="font-body font-light leading-[1.88] max-w-md"
+            style={{ fontSize: "clamp(0.9rem, 1.5vw, 1rem)", color: "var(--dim-3)" }}
+          >
             {SITE_PROFILE.bio}
-          </p>
+          </motion.p>
 
-          {/* Philosophy cards */}
-          <div className="flex flex-col gap-3">
-            {PHILOSOPHY.map((item) => (
-              <div
-                key={item.title}
-                className="liquid-glass rounded-2xl p-4 flex items-start gap-3"
-              >
-                <span className="text-xl mt-0.5">{item.icon}</span>
-                <div>
-                  <p className="font-body font-medium text-white/80 text-sm">
-                    {item.title}
+          {/* Beliefs */}
+          <motion.div
+            custom={0.22}
+            variants={iFade}
+            className="flex flex-col gap-6 pt-8"
+            style={{ borderTop: "1px solid var(--border-dim)" }}
+          >
+            {BELIEFS.map((b) => (
+              <div key={b.n} className="flex items-start gap-5">
+                <span className="label w-6 shrink-0 mt-0.5 tabular-nums">{b.n}</span>
+                <div className="flex flex-col gap-0.5">
+                  <p className="font-body font-medium text-sm" style={{ color: "var(--dim-4)" }}>
+                    {b.title}
                   </p>
-                  <p className="font-body text-white/40 text-xs mt-0.5">
-                    {item.desc}
+                  <p className="font-body text-xs leading-relaxed" style={{ color: "var(--dim-2)" }}>
+                    {b.body}
                   </p>
                 </div>
               </div>
             ))}
-          </div>
+          </motion.div>
         </motion.div>
 
-        {/* Right column */}
+        {/* ── Right ─────────────────────────────────────────────────── */}
         <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="flex flex-col gap-5"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.12 }}
+          className="flex flex-col gap-7"
         >
-          {/* Stats 2×2 grid */}
-          <div className="grid grid-cols-2 gap-4">
-            {STATS.map((s) => (
+          {/* Metric table — editorial, not cliché grid */}
+          <motion.div
+            custom={0.08}
+            variants={iFade}
+            className="flex flex-col"
+            style={{ borderTop: "1px solid var(--border-dim)" }}
+          >
+            {METRICS.map((m, i) => (
               <div
-                key={s.label}
-                className="liquid-glass rounded-2xl p-6 text-center"
+                key={m.label}
+                className="flex items-baseline justify-between py-4 group"
+                style={{ borderBottom: "1px solid var(--border-dim)" }}
               >
-                <p className="font-heading italic text-white text-5xl leading-none">
-                  {s.value}
-                </p>
-                <p className="font-body text-white/40 text-xs mt-2 uppercase tracking-wider">
-                  {s.label}
-                </p>
+                <span
+                  className="font-heading italic leading-none group-hover:text-white transition-colors duration-200"
+                  style={{
+                    fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)",
+                    color: i === 0 ? "var(--fg)" : "var(--dim-4)",
+                  }}
+                >
+                  {m.val}
+                </span>
+                <span className="label group-hover:text-white/40 transition-colors duration-200">
+                  {m.label}
+                </span>
               </div>
             ))}
-          </div>
+          </motion.div>
 
-          {/* Fun facts */}
-          <div className="flex flex-col gap-2">
-            {FUN_FACTS.map((f) => (
-              <span
+          {/* Facts */}
+          <motion.div custom={0.18} variants={iFade} className="flex flex-col gap-1.5">
+            {FACTS.map((f) => (
+              <div
                 key={f.tag}
-                className="liquid-glass rounded-xl px-3 py-2 text-xs font-body text-white/50 flex items-start gap-2"
+                className="card rounded-xl px-4 py-3 flex items-start gap-4"
               >
-                <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 mt-1 ${f.dot}`} />
-                <span>
-                  <span className="text-white/30 font-medium mr-1.5">{f.tag}</span>
+                <span className="label w-9 shrink-0 tabular-nums">{f.tag}</span>
+                <span className="font-body text-xs leading-relaxed" style={{ color: "var(--dim-2)" }}>
                   {f.text}
                 </span>
-              </span>
+              </div>
             ))}
-          </div>
+          </motion.div>
         </motion.div>
+
       </div>
     </section>
   );
