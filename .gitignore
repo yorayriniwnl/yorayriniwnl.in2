@@ -9,3 +9,8 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 .DS_Store
+
+# Upgrade artifacts (added by Copilot)
+/portfolio-4k-upgrade.zip
+/portfolio-4k-upgrade/
+backup-before-4k-upgrade-*/
