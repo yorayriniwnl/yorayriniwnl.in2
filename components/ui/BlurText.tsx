@@ -7,12 +7,14 @@ import { useRef } from "react";
 interface BlurTextProps {
   text: string;
   className?: string;
-  delay?: number; // ms between words
+  style?: React.CSSProperties;
+  delay?: number;
 }
 
 export default function BlurText({
   text,
   className,
+  style,
   delay = 100,
 }: BlurTextProps) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -21,7 +23,7 @@ export default function BlurText({
   const words = text.split(" ");
 
   return (
-    <span ref={ref} className={className}>
+    <span ref={ref} className={className} style={style}>
       {words.map((word, i) => (
         <span key={i} style={{ display: "inline-block" }}>
           <motion.span

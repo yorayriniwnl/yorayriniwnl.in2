@@ -7,28 +7,23 @@ const HERO_VIDEO =
   "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260307_083826_e938b29f-a43a-41ec-a153-3d4730578ab8.mp4";
 
 const STATS = [
-  { value: 9, suffix: "+", label: "Sites & Projects" },
-  { value: 3, suffix: "", label: "Hackathons Shipped" },
-  { value: 3.2, suffix: "×", label: "Avg Performance Gain" },
-  { value: 2027, suffix: "", label: "Graduating" },
-];
+  { value: 9,    suffix: "+", label: "Projects Built" },
+  { value: 3,    suffix: "",  label: "Hackathons Shipped" },
+  { value: 2027, suffix: "",  label: "Graduating" },
+  { value: 9,    suffix: "",  label: "Public Repos" },
+]
 
 function CountingNumber({
   target,
   suffix,
   inView,
-  isFloat,
 }: {
   target: number;
   suffix: string;
   inView: boolean;
-  isFloat: boolean;
 }) {
   const val = useMotionValue(0);
-  const rounded = useTransform(val, (v) =>
-    isFloat ? v.toFixed(1) : Math.round(v).toString()
-  );
-  const ref = useRef<HTMLSpanElement>(null);
+  const rounded = useTransform(val, (v) => Math.round(v).toString());
 
   useEffect(() => {
     if (!inView) return;
@@ -41,7 +36,7 @@ function CountingNumber({
 
   return (
     <span>
-      <motion.span ref={ref}>{rounded}</motion.span>
+      <motion.span>{rounded}</motion.span>
       {suffix}
     </span>
   );
@@ -93,7 +88,6 @@ export default function Stats() {
                     target={s.value}
                     suffix={s.suffix}
                     inView={inView}
-                    isFloat={!Number.isInteger(s.value)}
                   />
                 </p>
                 <p className="font-body text-white/40 text-xs mt-3 uppercase tracking-widest">

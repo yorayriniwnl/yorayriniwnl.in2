@@ -1,183 +1,192 @@
 // ─── Projects ────────────────────────────────────────────────────────────────
 export const HOME_PROJECTS = [
   {
-    slug: "realtime-dashboard",
-    title: "Realtime Analytics Dashboard",
+    slug: "zenith",
+    title: "Yor Zenith — Solar Energy Planning Platform",
     shortDescription:
-      "A live data dashboard built with Next.js, Socket.IO and Recharts, streaming metrics from a FastAPI backend with sub-100ms latency.",
+      "Full-stack solar decision platform combining rooftop feasibility, subsidy intelligence, long-term return analysis, and 3D visualization dashboards.",
     category: "Full-Stack",
-    tech: ["Next.js", "FastAPI", "Socket.IO", "Recharts", "PostgreSQL"],
-    github: "https://github.com/ayushroy/realtime-dashboard",
-    stars: 48,
+    tech: ["Next.js", "React", "TypeScript", "Three.js", "Python"],
+    github: "https://github.com/yorayriniwnl/yor-zenith",
+    stars: null,
   },
   {
-    slug: "cv-pipeline",
-    title: "Computer Vision Pipeline",
+    slug: "helios",
+    title: "Yor Helios — Realtime Monitoring System",
     shortDescription:
-      "End-to-end object detection pipeline using YOLOv8 and OpenCV, packaged as a FastAPI microservice with a React review UI.",
+      "Realtime monitoring platform built with FastAPI, WebSocket alerts, and dashboard workflows for live data tracking and threshold-based notifications.",
+    category: "Backend / Realtime",
+    tech: ["FastAPI", "WebSocket", "Python", "React", "PostgreSQL"],
+    github: "https://github.com/yorayriniwnl/yor-helios",
+    stars: null,
+  },
+  {
+    slug: "ai-detector",
+    title: "AI vs Real Image Classifier",
+    shortDescription:
+      "Image authenticity classifier using OpenCV, LBP/GLCM texture features, Scikit-Learn SVM, and a Streamlit interface for real-time inference.",
     category: "ML / CV",
-    tech: ["Python", "YOLOv8", "OpenCV", "FastAPI", "React"],
-    github: "https://github.com/ayushroy/cv-pipeline",
-    stars: 31,
+    tech: ["Python", "OpenCV", "Scikit-Learn", "Streamlit", "SVM"],
+    github: "https://github.com/yorayriniwnl/ai-detector",
+    stars: null,
   },
   {
-    slug: "devlink",
-    title: "DevLink",
+    slug: "mentor-mentee",
+    title: "Mentor–Mentee Platform",
     shortDescription:
-      "GitHub-verified developer portfolio builder. Pulls repos, stars, and commits via the GitHub API and renders a hosted profile page.",
-    category: "Developer Tool",
-    tech: ["Next.js", "TypeScript", "GitHub API", "Tailwind"],
-    github: "https://github.com/ayushroy/devlink",
-    stars: 62,
+      "A structured mentorship platform connecting students with mentors, featuring session scheduling, progress tracking, and goal-setting workflows.",
+    category: "Web",
+    tech: ["Next.js", "TypeScript", "TailwindCSS", "FastAPI"],
+    github: "https://github.com/yorayriniwnl/mentor-mentee",
+    stars: null,
   },
   {
-    slug: "threejs-visualiser",
-    title: "Three.js Data Visualiser",
+    slug: "yor-smriti",
+    title: "Yor Smriti",
     shortDescription:
-      "3-D interactive data visualization tool rendering large datasets as point clouds and force-directed graphs in the browser.",
-    category: "Data Viz",
-    tech: ["Three.js", "TypeScript", "D3.js", "WebGL"],
-    github: "https://github.com/ayushroy/threejs-vis",
-    stars: 27,
+      "Personal knowledge and memory management tool. Captures, organizes, and surfaces notes and resources with a clean structured interface.",
+    category: "Productivity",
+    tech: ["Next.js", "TypeScript", "TailwindCSS"],
+    github: "https://github.com/yorayriniwnl/yor-smriti",
+    stars: null,
   },
   {
-    slug: "kiit-scheduler",
-    title: "KIIT Schedule Optimizer",
+    slug: "portfolio",
+    title: "This Portfolio — Yor Ayrin iwnl",
     shortDescription:
-      "Automated timetable optimizer for KIIT students that parses the official PDF schedule and exports a conflict-free personal calendar.",
-    category: "Utility",
-    tech: ["Python", "Scikit-Learn", "pdfminer", "Next.js"],
-    github: "https://github.com/ayushroy/kiit-scheduler",
-    stars: 19,
+      "This site itself. Built as a full product surface with resume pages, project case studies, GitHub-backed data, and a custom editorial design system.",
+    category: "Frontend",
+    tech: ["Next.js", "TypeScript", "TailwindCSS", "Framer Motion"],
+    github: "https://github.com/yorayriniwnl/yor-ayrin-iwnl",
+    stars: null,
   },
-  {
-    slug: "chat-os",
-    title: "ChatOS",
-    shortDescription:
-      "A minimal AI chat shell that runs multiple LLM sessions in separate 'windows', inspired by tiling window managers.",
-    category: "AI Tool",
-    tech: ["Next.js", "OpenAI API", "Framer Motion", "Zustand"],
-    github: "https://github.com/ayushroy/chatos",
-    stars: 44,
-  },
-];
+]
 
 // ─── Skill Groups ─────────────────────────────────────────────────────────────
 export const HOME_SKILL_GROUPS = [
   {
     group: "Frontend",
     skills: [
-      { name: "Next.js", pct: 92 },
-      { name: "React", pct: 90 },
-      { name: "TypeScript", pct: 85 },
-      { name: "Tailwind CSS", pct: 93 },
-      { name: "Three.js", pct: 70 },
-      { name: "Framer Motion", pct: 78 },
+      { name: "React",       pct: 82 },
+      { name: "Next.js",     pct: 84 },
+      { name: "HTML / CSS",  pct: 82 },
+      { name: "TailwindCSS", pct: 80 },
+      { name: "TypeScript",  pct: 65 },
+      { name: "Three.js",    pct: 72 },
     ],
   },
   {
     group: "Backend",
     skills: [
-      { name: "FastAPI", pct: 88 },
-      { name: "Node.js", pct: 80 },
-      { name: "PostgreSQL", pct: 75 },
-      { name: "Redis", pct: 68 },
-      { name: "Socket.IO", pct: 82 },
+      { name: "FastAPI",   pct: 76 },
+      { name: "Flask",     pct: 74 },
+      { name: "Node.js",   pct: 68 },
+      { name: "WebSocket", pct: 72 },
     ],
   },
   {
     group: "ML & Vision",
     skills: [
-      { name: "Python", pct: 91 },
-      { name: "OpenCV", pct: 80 },
+      { name: "Python",       pct: 84 },
+      { name: "OpenCV",       pct: 76 },
       { name: "Scikit-Learn", pct: 74 },
-      { name: "YOLOv8", pct: 71 },
-      { name: "NumPy / Pandas", pct: 85 },
+      { name: "Streamlit",    pct: 70 },
     ],
   },
   {
     group: "Tooling",
     skills: [
-      { name: "Docker", pct: 76 },
-      { name: "Git / GitHub", pct: 94 },
-      { name: "Vercel / AWS", pct: 73 },
-      { name: "Linux CLI", pct: 80 },
-      { name: "Figma", pct: 65 },
+      { name: "Git / GitHub",    pct: 90 },
+      { name: "VS Code",         pct: 88 },
+      { name: "Docker",          pct: 64 },
+      { name: "SQL",             pct: 58 },
+      { name: "Java / C basics", pct: 52 },
     ],
   },
-];
+]
 
 // ─── Experience ───────────────────────────────────────────────────────────────
 export const HOME_EXPERIENCE_ITEMS = [
   {
-    title: "Full-Stack Developer Intern",
-    org: "TechStart Labs",
-    date: "Jun 2024 – Sep 2024",
+    title: "Independent Project Work",
+    org: "Self-directed",
+    date: "Resume verified",
     kind: "Verified",
     summary:
-      "Built and shipped three internal tools used daily by 40+ employees, reducing manual reporting time by 3.2× through automated dashboards and API integrations.",
+      "The strongest internship-ready signal comes from shipped full-stack projects and current public repositories.",
     bullets: [
-      "Redesigned the analytics dashboard with Next.js + Recharts, cutting load time from 4.2 s to 0.9 s",
-      "Built a Python scraper + FastAPI service that auto-populated CRM records from LinkedIn",
-      "Wrote unit and integration tests covering 87% of the codebase before handoff",
+      "Built Yor Helios with FastAPI, WebSocket alerts, and dashboard workflows for realtime monitoring.",
+      "Built Yor Zenith with React and Three.js dashboards for rooftop feasibility and solar generation planning.",
+      "Built an AI-vs-real image classifier using OpenCV, LBP/GLCM features, Scikit-Learn SVM, and Streamlit.",
     ],
   },
   {
-    title: "B.Tech — Computer Science & Engineering",
-    org: "KIIT University",
+    title: "Portfolio Platform",
+    org: "This website",
+    date: "Jan 2026 – Present",
+    kind: "Verified",
+    summary:
+      "Maintained as a product surface with resume pages, project case studies, GitHub imports, and an editorial design system.",
+    bullets: [
+      "Centralized profile, project, skill, education, and achievement data around resume and GitHub evidence.",
+      "Built custom design system with liquid glass morphism, Instrument Serif typography, and Framer Motion animations.",
+      "Replaced stale claims and old repo links with current GitHub-backed project information.",
+    ],
+  },
+  {
+    title: "B.Tech — Computer Science & Communication Engineering",
+    org: "KIIT Deemed to be University",
     date: "2023 – 2027",
     kind: "Education",
     summary:
-      "Relevant coursework: Data Structures, OS, DBMS, ML Fundamentals, Computer Networks. CGPA 8.9.",
+      "Pursuing B.Tech with self-directed project work alongside university coursework. Technical focus: web development, machine learning, computer vision, and SQL fundamentals.",
     bullets: [
-      "Co-lead of the KIIT Developer Circle — organised 3 hackathons with 200+ participants",
-      "Teaching assistant for Data Structures (Sem 3)",
+      "Expected graduation: 2027.",
+      "Relevant areas: Data Structures, OS, DBMS, ML fundamentals, Computer Networks.",
     ],
   },
   {
-    title: "Open-Source Contributor",
-    org: "Various (GitHub)",
-    date: "2023 – Present",
-    kind: "Verified",
-    summary:
-      "Regular contributions to open-source projects in the Next.js and Python ecosystems — bug fixes, documentation, and small features.",
+    title: "CBSE Secondary Education",
+    org: "Kendriya Vidyalaya, Burdwan",
+    date: "Completed",
+    kind: "Education",
+    summary: "Completed senior secondary and secondary education under CBSE.",
     bullets: [
-      "Merged 6 PRs across 4 repositories with 500 – 8 000 stars",
-      "Maintains 9 public repositories with combined 280+ stars",
+      "Completed Pratham, Dwitiya, and Tritiya Sopan in Bharat Scouts & Guides.",
     ],
   },
-];
+]
 
 // ─── Blog Previews ────────────────────────────────────────────────────────────
 export const HOME_BLOG_PREVIEWS = [
   {
-    slug: "nextjs-websockets",
-    title: "Real-Time Data in Next.js: Beyond Server-Sent Events",
+    slug: "turning-portfolio-claims-into-verified-signals",
+    title: "Turning Portfolio Claims into Verified Signals",
     excerpt:
-      "Why I ditched SSE and spent a weekend wiring Socket.IO into the App Router — what broke, what didn't, and what I'd do differently.",
-    category: "Deep Dive",
+      "Most portfolio sites say things. This one tries to prove them. How GitHub-backed data, real project links, and honest copy changed the way the site reads.",
+    category: "Case Study",
     catClass: "blue",
-    date: "Apr 2025",
-    readTime: "8 min read",
+    date: "Apr 2026",
+    readTime: "7 min read",
   },
   {
-    slug: "yolo-fastapi",
-    title: "Shipping a YOLO Inference API in Under an Hour",
+    slug: "what-yor-zenith-proves-about-decision-support-interfaces",
+    title: "What Yor Zenith Taught Me About Decision-Support Interfaces",
     excerpt:
-      "A no-fluff walkthrough of wrapping YOLOv8 in FastAPI, containerising it, and deploying it to a $6/mo VPS with an Nginx reverse proxy.",
-    category: "Tutorial",
-    catClass: "green",
-    date: "Feb 2025",
-    readTime: "6 min read",
-  },
-  {
-    slug: "design-systems-solo",
-    title: "Building a Design System When You're the Only Designer",
-    excerpt:
-      "Notes on maintaining visual consistency across 9 projects without a Figma subscription, a design team, or much free time.",
-    category: "Process",
+      "Domain-heavy tools only feel premium when the interface explains complexity instead of hiding it.",
+    category: "Project Notes",
     catClass: "amber",
-    date: "Jan 2025",
+    date: "Apr 2026",
     readTime: "5 min read",
   },
-];
+  {
+    slug: "accuracy-is-part-of-the-interface",
+    title: "Accuracy Is Part of the Interface",
+    excerpt:
+      "When you build a classifier, the model accuracy number is not just a metric — it is a design decision that shapes how much a user trusts the output.",
+    category: "Build Log",
+    catClass: "green",
+    date: "Apr 2026",
+    readTime: "4 min read",
+  },
+]
