@@ -132,6 +132,7 @@ export default function Projects() {
                     className="transition-colors duration-200 hover:text-white/65"
                     style={{ color: "var(--dim-1)" }}
                     onClick={(e) => e.stopPropagation()}
+                    aria-label={`Open ${featured.title} on GitHub`}
                   >
                     <Github size={14} />
                   </Link>
@@ -203,6 +204,7 @@ export default function Projects() {
                     className="transition-colors duration-200 hover:text-white/65"
                     style={{ color: "var(--dim-1)" }}
                     onClick={(e) => e.stopPropagation()}
+                    aria-label={`Open ${project.title} on GitHub`}
                   >
                     <Github size={13} />
                   </Link>
