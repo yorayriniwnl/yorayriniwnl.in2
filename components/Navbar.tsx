@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
 import { ArrowUpRight, X } from "lucide-react";
 
 const NAV_LINKS = [

@@ -8,10 +8,6 @@ import { useEffect, useRef } from "react";
 const HERO_VIDEO =
   "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260307_083826_e938b29f-a43a-41ec-a153-3d4730578ab8.mp4";
 
-/* Name split: "Ayush Roy" — period is accent-colored */
-const NAME_PARTS = [
-  { chars: ["A","y","u","s","h","\u00A0","R","o","y"], accent: false },
-];
 const ALL_CHARS = ["A","y","u","s","h","\u00A0","R","o","y"];
 
 const letterVariants = {
@@ -124,7 +120,7 @@ export default function Hero() {
         </motion.div>
 
         {/* Name */}
-        <div
+        <h1
           aria-label="Ayush Roy."
           className="flex flex-wrap overflow-hidden mb-0"
           style={{
@@ -155,7 +151,7 @@ export default function Hero() {
           >
             .
           </motion.span>
-        </div>
+        </h1>
 
         {/* Drawing rule */}
         <span
